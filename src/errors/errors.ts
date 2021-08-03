@@ -1,0 +1,1 @@
+export const NotImplementedException = new Error('Not Implemented');
