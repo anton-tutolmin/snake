@@ -1,8 +1,10 @@
 import { IDrawStrategy } from "./interfaces/IDrawStrategy";
 import { IMoveStrategy } from "./interfaces/IMoveStrategy";
+import { INextGameStateStrategy } from "./interfaces/INextGameStateStrategy";
 
 export const enum FRAME_TYPES {
   SNAKE = 'snake',
+  FRUIT = 'fruit',
 }
 
 export const enum MoveDireactions {
@@ -18,6 +20,10 @@ export type DrawStrategies = {
 
 export type MoveStrategies = {
   [key: string]: IMoveStrategy,
+}
+
+export type NextGameStateStrategies = {
+  [key: string]: INextGameStateStrategy,
 }
 
 export type Score = number;

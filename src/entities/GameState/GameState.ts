@@ -10,7 +10,11 @@ export abstract class GameState {
 
   public abstract getDrawable(): ITypedDrawElement[];
 
-  public abstract action(): void;
+  public abstract nextState(): void;
 
-  public abstract updateOnArrowButton(event: KeyboardEvent): void;
+  public abstract handleArrowButton(event: KeyboardEvent): void;
+
+  public incrementScore(): void {
+    this.score = this.score + 1;
+  }
 }

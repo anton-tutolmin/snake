@@ -3,7 +3,7 @@ import { ITypedDrawElement } from "../../interfaces/IDrawElement";
 import { GameState } from "./GameState";
 
 export class DefaultGameState extends GameState {
-  public action() {
+  public nextState() {
     throw NotImplementedException;
   }
 
@@ -11,7 +11,7 @@ export class DefaultGameState extends GameState {
     throw NotImplementedException;
   }
 
-  public updateOnArrowButton(event: KeyboardEvent) {
+  public handleArrowButton(event: KeyboardEvent) {
     throw NotImplementedException;
   }
 }

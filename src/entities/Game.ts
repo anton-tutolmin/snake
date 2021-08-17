@@ -11,28 +11,32 @@ export class Game implements IGame {
   private timer: NodeJS.Timer | null;
   private gameState: GameState;
   private board: Board;
+  private isPaused: boolean;
 
   constructor() {
     this.gameState = GameStateFactory.createGameState(GameStateTypes.SNAKE);
     this.board = new Board(getCanvas(), drawStrategies);
     this.timer = null;
+    this.isPaused = true;
   }
 
   public init(): void {
-    window.addEventListener('keydown', event => {
+    window.addEventListener('keydown',
       guardedListener<KeyboardEvent>(
-        event,
         isArrowKeyCode,
-        this.gameState.updateOnArrowButton.bind(this.gameState)
-      );
-    });
+        this.gameState.handleArrowButton.bind(this.gameState)
+      )
+    );
   }
 
   public start(): void {
+    this.isPaused = false;
     this.timer = setInterval(() => {
-      this.board.clear();
-      this.board.drawFrame(this.gameState.getDrawable());
-      this.gameState.action();
+      if (!this.isPaused) {
+        this.board.clear();
+        this.board.drawFrame(this.gameState.getDrawable());
+        this.gameState.nextState();
+      }
     }, 100);
   }
 

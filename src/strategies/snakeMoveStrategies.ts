@@ -1,81 +1,81 @@
 import { SCREEN_HEIGHT, SCREEN_WIDTH, SNAKE_PART_SIZE } from "../constants";
 import { IMoveStrategy } from "../interfaces/IMoveStrategy";
-import { ISnakePart } from "../interfaces/ISnakePart";
+import { ISnakeDrawElement } from "../interfaces/ISnakeDrawElement";
 import { FRAME_TYPES, MoveDireactions } from "../types";
 import { isSnakeOnScreenBoundry } from "../utils/guards";
 
 export class SnakeMoveUpStrategy implements IMoveStrategy {
-  move(snakeParts: ISnakePart[]): void {
-    if (isSnakeOnScreenBoundry(snakeParts[0], MoveDireactions.UP)) {
-      snakeParts.unshift({
-        x: snakeParts[0].x,
+  move(snakeDrawElements: ISnakeDrawElement[]): void {
+    if (isSnakeOnScreenBoundry(snakeDrawElements[0], MoveDireactions.UP)) {
+      snakeDrawElements.unshift({
+        x: snakeDrawElements[0].x,
         y: SCREEN_HEIGHT - SNAKE_PART_SIZE,
         type: FRAME_TYPES.SNAKE,
       });
     } else {
-      snakeParts.unshift({
-        x: snakeParts[0].x,
-        y: snakeParts[0].y - SNAKE_PART_SIZE,
+      snakeDrawElements.unshift({
+        x: snakeDrawElements[0].x,
+        y: snakeDrawElements[0].y - SNAKE_PART_SIZE,
         type: FRAME_TYPES.SNAKE,
       });
     }
-    snakeParts.pop();
+    snakeDrawElements.pop();
   }
 }
 
 export class SnakeMoveDownStrategy implements IMoveStrategy {
-  move(snakeParts: ISnakePart[]): void {
-    if (isSnakeOnScreenBoundry(snakeParts[0], MoveDireactions.DOWN)) {
-      snakeParts.unshift({
-        x: snakeParts[0].x,
+  move(snakeDrawElements: ISnakeDrawElement[]): void {
+    if (isSnakeOnScreenBoundry(snakeDrawElements[0], MoveDireactions.DOWN)) {
+      snakeDrawElements.unshift({
+        x: snakeDrawElements[0].x,
         y: 0,
         type: FRAME_TYPES.SNAKE,
       });
     } else {
-      snakeParts.unshift({
-        x: snakeParts[0].x,
-        y: snakeParts[0].y + SNAKE_PART_SIZE,
+      snakeDrawElements.unshift({
+        x: snakeDrawElements[0].x,
+        y: snakeDrawElements[0].y + SNAKE_PART_SIZE,
         type: FRAME_TYPES.SNAKE,
       });
     }
-    snakeParts.pop();
+    snakeDrawElements.pop();
   }
 }
 
 export class SnakeMoveRightStrategy implements IMoveStrategy {
-  move(snakeParts: ISnakePart[]): void {
-    if (isSnakeOnScreenBoundry(snakeParts[0], MoveDireactions.RIGHT)) {
-      snakeParts.unshift({
+  move(snakeDrawElements: ISnakeDrawElement[]): void {
+    if (isSnakeOnScreenBoundry(snakeDrawElements[0], MoveDireactions.RIGHT)) {
+      snakeDrawElements.unshift({
         x: 0,
-        y: snakeParts[0].y,
+        y: snakeDrawElements[0].y,
         type: FRAME_TYPES.SNAKE,
       });
     } else {
-      snakeParts.unshift({
-        x: snakeParts[0].x + SNAKE_PART_SIZE,
-        y: snakeParts[0].y,
+      snakeDrawElements.unshift({
+        x: snakeDrawElements[0].x + SNAKE_PART_SIZE,
+        y: snakeDrawElements[0].y,
         type: FRAME_TYPES.SNAKE,
       });
     }
-    snakeParts.pop();
+    snakeDrawElements.pop();
   }
 }
 
 export class SnakeMoveLeftStrategy implements IMoveStrategy {
-  move(snakeParts: ISnakePart[]): void {
-    if (isSnakeOnScreenBoundry(snakeParts[0], MoveDireactions.LEFT)) {
-      snakeParts.unshift({
+  move(snakeDrawElements: ISnakeDrawElement[]): void {
+    if (isSnakeOnScreenBoundry(snakeDrawElements[0], MoveDireactions.LEFT)) {
+      snakeDrawElements.unshift({
         x: SCREEN_WIDTH - SNAKE_PART_SIZE,
-        y: snakeParts[0].y,
+        y: snakeDrawElements[0].y,
         type: FRAME_TYPES.SNAKE,
       });
     } else {
-      snakeParts.unshift({
-        x: snakeParts[0].x - SNAKE_PART_SIZE,
-        y: snakeParts[0].y,
+      snakeDrawElements.unshift({
+        x: snakeDrawElements[0].x - SNAKE_PART_SIZE,
+        y: snakeDrawElements[0].y,
         type: FRAME_TYPES.SNAKE,
       });
     }
-    snakeParts.pop();
+    snakeDrawElements.pop();
   }
 }
